@@ -121,11 +121,7 @@ class TrainSorter {
   // safely cut the branch short at that point).
   isWorseThanBestSolutionSoFar(counter, currPath) {
     let numDiscardedCars = counter - currPath.length;
-    if (numDiscardedCars <= this.minNumDiscardedCars) {
-      return false;
-    } else {
-      return true;
-    }
+    return numDiscardedCars > this.minNumDiscardedCars;
   }
 
   // updates the global value that tracks the minimum number of discarded train cars
@@ -141,13 +137,12 @@ class TrainSorter {
 // ==========================================
 // testing / driver code
 // ------------------------------------------
-let permutations;
 
 console.log("Test 1");
 let input1 = [4, 4, 5, 2, 1];
 let ts1 = new TrainSorter(input1);
-permutations = ts1.sort();
-solution1 = ts1.getLongestPath();
+let permutations = ts1.sort();
+let solution1 = ts1.getLongestPath();
 console.log(`input: ${input1}`);
 console.log(`actual  : ${solution1}`);
 console.log("expected: 4");
